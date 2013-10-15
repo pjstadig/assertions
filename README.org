@@ -7,9 +7,10 @@
   conditions.
 
   These assertions work similarly to how Java's assertions work.  There is a
-  pjstadig.Assertions class with a static final method that is initialized based
-  on the assertion status for that class.  When this static final field is used
-  in a conditional, then the assertion body is eliminated at runtime by the JIT.
+  ~pjstadig.Assertions~ class with a static final method that is initialized
+  based on the assertion status for that class.  When this static final field
+  set to false and it is used in a conditional, then the assertion body is
+  eliminated at runtime by the JIT.
 
   To use this for a Leiningen project
 
@@ -54,11 +55,17 @@
   :         at clojure.lang.Var.applyTo(Var.java:532)
   :         at clojure.main.main(main.java:37)
 
-  When you run it with assertions disable no AssertionError is thrown, and there
-  is no penalty for including assertions in your code:
+  When you run it with assertions disabled no AssertionError is thrown, and
+  there is no penalty for including assertions in your code:
 
   : ~/src/assertions$ lein run -m pjstadig.assertions.test fail
   : ~/src/assertions$ 
+
+  You can also enable/disable assertions specifically for the pjstadig package
+  (e.g. ~-ea:pjstadig...~), or the pjstadig.Assertions
+  (e.g. ~-ea:pjstadig.Assertions~) class.
+
+  : ~/src/assertions$ JVM_OPTS=-ea:pjstadig.Assertions lein run -m pjstadig.assertions.test fail
 ** License
   : Copyright © 2013 Paul Stadig. All rights reserved.
   : 
