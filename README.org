@@ -2,15 +2,25 @@
 * assertions
   Zero penalty runtime assertions for Clojure.
 
-  Clojure's built in assert macro will compile away the assertion, if the
-  conditions are correct, and currently it is difficult to setup the right
-  conditions.
+  Clojure's built in ~assert~ macro is a compile-time construct that will
+  eliminate assertions if \*assert\* is set to false.  However, there isn't a
+  good way to set \*assert\* to false.  You cannot ~set!~ it in your namespace,
+  because that will fail when your code is loaded in any context where there
+  isn't an established binding for \*assert\* (AOT'ed code for one).  Otherwise
+  you could try to ~alter-var-root~ \*assert\* in a ~user.clj~ file, but that
+  does not compose well.  You can set a Java system property to configure some
+  features of the Clojure compiler, but there doesn't exist a property for
+  disabling assertions.
+  
+  Even if you could work that all out, what you have is still a compile-time
+  assertion construct.  Java's assertions have the property that they can be
+  enabled/disabled at runtime without any performance penalty.
 
-  These assertions work similarly to how Java's assertions work.  There is a
-  ~pjstadig.Assertions~ class with a static final method that is initialized
-  based on the assertion status for that class.  When this static final field
-  set to false and it is used in a conditional, then the assertion body is
-  eliminated at runtime by the JIT.
+  My assertions work similar to Java's.  There is a ~pjstadig.Assertions~ class
+  with a static final method that is initialized by calling
+  ~desiredAssertionStatus~ for that class.  When this static final field set to
+  false and it is used in a conditional, then assertions are eliminated at
+  runtime by the JIT.
 
   To use this for a Leiningen project
 
