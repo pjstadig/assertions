@@ -11,6 +11,18 @@
   on the assertion status for that class.  When this static final field is used
   in a conditional, then the assertion body is eliminated at runtime by the JIT.
 
+  To use this for a Leiningen project
+
+  : [pjstadig/assertions "0.1.0"]
+
+  Or for a Maven project
+
+  : <dependency>
+  :   <groupId>pjstadig</groupId>
+  :   <artifactId>assertions</artifactId>
+  :   <version>0.1.0</version>
+  : </dependency>
+
   Example:
 
   : (ns pjstadig.assertions.test
