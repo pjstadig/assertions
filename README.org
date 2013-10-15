@@ -63,7 +63,10 @@
 
   You can also enable/disable assertions specifically for the pjstadig package
   (e.g. ~-ea:pjstadig...~), or the pjstadig.Assertions
-  (e.g. ~-ea:pjstadig.Assertions~) class.
+  (e.g. ~-ea:pjstadig.Assertions~) class.  However, doing so will enable/disable
+  assertions globally for any namespace that is using these assertions.  There
+  is currently no way to enable/disable assertions for individual Clojure
+  namespaces.
 ** License
   : Copyright © 2013 Paul Stadig. All rights reserved.
   : 
