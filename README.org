@@ -1,0 +1,58 @@
+#+STARTUP: hidestars showall
+* assertions
+  Zero penalty runtime assertions for Clojure.
+
+  Clojure's built in assert macro will compile away the assertion, if the
+  conditions are correct, and currently it is difficult to setup the right
+  conditions.
+
+  These assertions work similarly to how Java's assertions work.  There is a
+  pjstadig.Assertions class with a static final method that is initialized based
+  on the assertion status for that class.  When this static final field is used
+  in a conditional, then the assertion body is eliminated at runtime by the JIT.
+
+  Example:
+
+  : (ns pjstadig.assertions.test
+  :   (:refer-clojure :exclude [assert])
+  :   (:require [pjstadig.assertions :refer [assert]]))
+  : 
+  : (defn -main [& [flag]]
+  :   (assert (not= flag "fail")))
+
+  When you run the program with assertions enabled it throws an AssertionError:
+
+  : ~/src/assertions$ JVM_OPTS=-ea lein run -m pjstadig.assertions.test fail
+  : Exception in thread "main" java.lang.AssertionError: (not= flag "fail")
+  :         at pjstadig.assertions.test$_main.doInvoke(test.clj:14)
+  :         at clojure.lang.RestFn.invoke(RestFn.java:408)
+  :         at clojure.lang.Var.invoke(Var.java:415)
+  :         at user$eval33.invoke(NO_SOURCE_FILE:1)
+  :         at clojure.lang.Compiler.eval(Compiler.java:6619)
+  :         at clojure.lang.Compiler.eval(Compiler.java:6609)
+  :         at clojure.lang.Compiler.eval(Compiler.java:6582)
+  :         at clojure.core$eval.invoke(core.clj:2852)
+  :         at clojure.main$eval_opt.invoke(main.clj:308)
+  :         at clojure.main$initialize.invoke(main.clj:327)
+  :         at clojure.main$null_opt.invoke(main.clj:362)
+  :         at clojure.main$main.doInvoke(main.clj:440)
+  :         at clojure.lang.RestFn.invoke(RestFn.java:421)
+  :         at clojure.lang.Var.invoke(Var.java:419)
+  :         at clojure.lang.AFn.applyToHelper(AFn.java:163)
+  :         at clojure.lang.Var.applyTo(Var.java:532)
+  :         at clojure.main.main(main.java:37)
+
+  When you run it with assertions disable no AssertionError is thrown, and there
+  is no penalty for including assertions in your code:
+
+  : ~/src/assertions$ lein run -m pjstadig.assertions.test fail
+  : ~/src/assertions$ 
+** License
+  : Copyright © 2013 Paul Stadig. All rights reserved.
+  : 
+  : This Source Code Form is subject to the terms of the Mozilla Public License,
+  : v. 2.0. If a copy of the MPL was not distributed with this file, You can
+  : obtain one at http://mozilla.org/MPL/2.0/.
+  : 
+  : This Source Code Form is "Incompatible With Secondary Licenses", as defined
+  : by the Mozilla Public License, v. 2.0.
