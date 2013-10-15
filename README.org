@@ -3,11 +3,11 @@
   Zero penalty runtime assertions for Clojure.
 
   Clojure's built in ~assert~ macro is a compile-time construct that will
-  eliminate assertions if =*assert*= is set to false.  However, there isn't a
-  good way to set *assert* to false.  You cannot ~set!~ it in your namespace,
+  eliminate assertions if ~*assert*~ is set to false.  However, there isn't a
+  good way to set ~*assert*~ to false.  You cannot ~set!~ it in your namespace,
   because that will fail when your code is loaded in any context where there
-  isn't an established binding for \*assert\* (AOT'ed code for one).  Otherwise
-  you could try to ~alter-var-root~ \*assert\* in a ~user.clj~ file, but that
+  isn't an established binding for ~*assert*~ (AOT'ed code for one).  Otherwise
+  you could try to ~alter-var-root~ ~*assert*~ in a ~user.clj~ file, but that
   does not compose well.  You can set a Java system property to configure some
   features of the Clojure compiler, but there doesn't exist a property for
   disabling assertions.
