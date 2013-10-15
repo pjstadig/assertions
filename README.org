@@ -64,8 +64,6 @@
   You can also enable/disable assertions specifically for the pjstadig package
   (e.g. ~-ea:pjstadig...~), or the pjstadig.Assertions
   (e.g. ~-ea:pjstadig.Assertions~) class.
-
-  : ~/src/assertions$ JVM_OPTS=-ea:pjstadig.Assertions lein run -m pjstadig.assertions.test fail
 ** License
   : Copyright © 2013 Paul Stadig. All rights reserved.
   : 
