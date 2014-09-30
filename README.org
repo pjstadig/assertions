@@ -17,7 +17,7 @@
   enabled/disabled at runtime without any performance penalty.
 
   My assertions work similar to Java's.  There is a ~pjstadig.Assertions~ class
-  with a static final method that is initialized by calling
+  with a static final field that is initialized by calling
   ~desiredAssertionStatus~ for that class.  When this static final field set to
   false and it is used in a conditional, then the body of that conditional
   (i.e. the assertion) is eliminated as dead code by the JIT.
