@@ -7,5 +7,5 @@
 /.lein-failures
 /.lein-repl-history
 /.nrepl-history
-/pom.xml
+/pom.xml*
 *jar
