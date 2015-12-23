@@ -24,14 +24,14 @@
 
   To use this for a Leiningen project
 
-  : [pjstadig/assertions "0.1.0"]
+  : [pjstadig/assertions "0.2.0"]
 
   Or for a Maven project
 
   : <dependency>
   :   <groupId>pjstadig</groupId>
   :   <artifactId>assertions</artifactId>
-  :   <version>0.1.0</version>
+  :   <version>0.2.0</version>
   : </dependency>
 
   Example:
@@ -78,7 +78,7 @@
   is currently no way to enable/disable assertions for individual Clojure
   namespaces.
 ** License
-  : Copyright © 2013 Paul Stadig. All rights reserved.
+  : Copyright © Paul Stadig and contributors. All rights reserved.
   : 
   : This Source Code Form is subject to the terms of the Mozilla Public License,
   : v. 2.0. If a copy of the MPL was not distributed with this file, You can
