@@ -1,4 +1,4 @@
-(defproject pjstadig/assertions "0.2.0-SNAPSHOT"
+(defproject pjstadig/assertions "0.2.0"
   :description "Zero penalty runtime assertions for Clojure."
   :url "http://github.com/pjstadig/assert"
   :license {:name "Mozilla Public License, v. 2.0"
