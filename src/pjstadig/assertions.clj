@@ -9,11 +9,20 @@
 (ns pjstadig.assertions
   (:refer-clojure :exclude [assert]))
 
+
+(defmacro when-assert
+  "Execute body of code only if assertions are enabled."
+  [& body]
+  `(when pjstadig.Assertions/assertionsEnabled
+     ~@body))
+
+
 (defmacro assert
+  "Evaluate form. Return nil on truthy result, throw AssertionError otherwise."
   ([form]
      `(assert ~form ~(pr-str form)))
   ([form msg]
-     `(if pjstadig.Assertions/assertionsEnabled
+     `(when-assert
         (if ~form
           nil
           (throw (AssertionError. ~msg))))))
